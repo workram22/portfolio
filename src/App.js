@@ -7,16 +7,141 @@ import {
   Linkedin,
   Mail,
   Github,
-  Shield,
-  Database,
-  Cloud,
-  Server,
   Cpu,
   Code2,
-  BriefcaseBusiness
+  BriefcaseBusiness,
+  Phone,
+  MapPin,
+  Sparkles,
+  ArrowRight
 } from 'lucide-react';
 
 export default function App() {
+
+  /* DYNAMIC EXPERIENCE CALCULATION */
+
+  const calculateDuration = (start, end = new Date()) => {
+
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    let years =
+        endDate.getFullYear() - startDate.getFullYear();
+
+    let months =
+        endDate.getMonth() - startDate.getMonth();
+
+    let days =
+        endDate.getDate() - startDate.getDate();
+
+    if (days < 0) {
+      months--;
+    }
+
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+
+    return `${years}y ${months}m`;
+  };
+
+  const calculateTotalExperience = () => {
+
+    const jobs = [
+      {
+        start: '2019-10-01',
+        end: '2020-10-01'
+      },
+      {
+        start: '2022-02-01',
+        end: '2023-08-01'
+      },
+      {
+        start: '2023-09-01',
+        end: new Date()
+      }
+    ];
+
+    let totalMonths = 0;
+
+    jobs.forEach(job => {
+
+      const start = new Date(job.start);
+      const end = new Date(job.end);
+
+      let months =
+          (end.getFullYear() - start.getFullYear()) * 12 +
+          (end.getMonth() - start.getMonth());
+
+      if (end.getDate() < start.getDate()) {
+        months--;
+      }
+
+      totalMonths += months;
+
+    });
+
+    const years = Math.floor(totalMonths / 12);
+    const months = totalMonths % 12;
+
+    return `${years}y ${months}m`;
+  };
+
+  const totalExperience = calculateTotalExperience();
+
+  const experiences = [
+    {
+      company: 'Straumann Group',
+      role: 'Software Engineer - Java',
+      location: 'Bengaluru, Karnataka, India',
+      duration: 'September 2023 — Present',
+      experience: calculateDuration('2023-09-01'),
+      icon: <BriefcaseBusiness />,
+      points: [
+        'Managed Azure AD B2C authentication systems and enterprise login services.',
+        'Owned authentication systems from KT to production enhancements.',
+        'Implemented high-value customer-facing backend features.',
+        'Optimized SAP synchronization and backend integrations.',
+        'Received Certificates of Appreciation in 2024 and 2025.'
+      ]
+    },
+
+    {
+      company: 'Yell',
+      role: 'Software Engineer',
+      location: 'Reading, England, United Kingdom',
+      duration: 'February 2022 — August 2023',
+      experience: calculateDuration(
+          '2022-02-01',
+          '2023-08-01'
+      ),
+      icon: <Code2 />,
+      points: [
+        'Worked across 25+ enterprise microservices.',
+        'Built moderation systems handling 100M+ files.',
+        'Configured MarkLogic infrastructure for UK-wide traffic.',
+        'Implemented backend integrations and APIs.'
+      ]
+    },
+
+    {
+      company: 'FLAGROOT',
+      role: 'Full Stack Developer Intern',
+      location: 'Bengaluru, Karnataka, India',
+      duration: 'October 2019 — October 2020',
+      experience: calculateDuration(
+          '2019-10-01',
+          '2020-10-01'
+      ),
+      icon: <Cpu />,
+      points: [
+        'Worked on ERP applications using Java and SQL.',
+        'Built strong backend engineering foundations.',
+        'Worked on enterprise full-stack applications.'
+      ]
+    }
+  ];
 
   const skills = [
     'Java',
@@ -47,6 +172,7 @@ export default function App() {
   ];
 
   return (
+
       <div className="app">
 
         {/* BACKGROUND */}
@@ -54,114 +180,198 @@ export default function App() {
         <div className="background-glow"></div>
         <div className="grid-background"></div>
 
+        {/* FLOATING TECH */}
+
         <div className="floating-icons">
 
-          <div className="floating-icon java">{'</>'}</div>
-          <div className="floating-icon api">API</div>
-          <div className="floating-icon db">SQL</div>
-          <div className="floating-icon cloud">AZURE</div>
-          <div className="floating-icon docker">DOCKER</div>
+          <div className="floating-icon java">
+            JAVA
+          </div>
+
+          <div className="floating-icon api">
+            SPRING BOOT
+          </div>
+
+          <div className="floating-icon db">
+            MICROSERVICES
+          </div>
+
+          <div className="floating-icon cloud">
+            AZURE
+          </div>
+
+          <div className="floating-icon docker">
+            DOCKER
+          </div>
 
         </div>
+
+        {/* ORBS */}
+
+        <div className="animated-orb orb1"></div>
+        <div className="animated-orb orb2"></div>
+        <div className="animated-orb orb3"></div>
 
         {/* HERO */}
 
         <section className="hero">
 
           <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 1 }}
               className="hero-left"
           >
 
             <div className="availability">
-              OPEN TO WORK - SOFTWARE ENGINEERING OPPORTUNITIES
+
+              <Sparkles size={14} />
+
+              OPEN TO WORK • BACKEND ENGINEERING OPPORTUNITIES
+
+            </div>
+
+            <div className="experience-badge">
+
+              {totalExperience} Professional Experience
+
             </div>
 
             <h1>
+
               Sreeram
               <span> Ravishankar</span>
+
             </h1>
 
-            <h2>
-              Backend Software Engineer
-            </h2>
+            <div className="hero-role-section">
+
+              <h2>
+
+                Backend Software Engineer
+
+                <span className="experience-inline">
+                • {totalExperience}
+              </span>
+
+              </h2>
+
+              <div className="hero-location">
+
+                <MapPin size={16} />
+
+                Bengaluru, Karnataka, India
+
+              </div>
+
+            </div>
 
             <p className="hero-description">
-              Backend-focused Software Engineer with 5+ years of experience
-              building scalable enterprise applications, authentication systems,
-              distributed microservices, and cloud-native backend platforms.
 
-              Specialized in Java, Spring Boot, Azure Cloud,
-              Azure AD B2C, REST APIs, authentication protocols,
-              and large-scale production systems.
+              Backend-focused Software Engineer with {totalExperience}
+              of experience building scalable enterprise applications,
+              authentication systems, distributed microservices and
+              cloud-native backend platforms.
+
             </p>
+
+            {/* BUTTONS */}
 
             <div className="hero-buttons">
 
-              <a
+              <motion.a
+                  whileHover={{
+                    scale: 1.05,
+                    y: -4
+                  }}
                   href="https://www.linkedin.com/in/work-ram/"
                   target="_blank"
                   rel="noreferrer"
                   className="primary-btn"
               >
-                <Linkedin size={18} />
-                LinkedIn
-              </a>
 
-              <a
+                <Linkedin size={18} />
+
+                LinkedIn
+
+                <ArrowRight size={16} />
+
+              </motion.a>
+
+              <motion.a
+                  whileHover={{
+                    scale: 1.05,
+                    y: -4
+                  }}
                   href="mailto:work.ram22@gmail.com"
                   className="secondary-btn"
               >
+
                 <Mail size={18} />
-                Contact Me
-              </a>
+
+                Email
+
+              </motion.a>
+
+              <motion.a
+                  whileHover={{
+                    scale: 1.05,
+                    y: -4
+                  }}
+                  href="tel:+919008174440"
+                  className="secondary-btn"
+              >
+
+                <Phone size={18} />
+
+                Contact
+
+              </motion.a>
 
             </div>
 
-            {/* TERMINAL */}
-
-            <div className="terminal-window">
-
-              <div className="terminal-header">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
-              <div className="terminal-body">
-
-                <p>$ Initializing Backend Services...</p>
-                <p>$ Loading Authentication Modules...</p>
-                <p>$ Connecting Microservices...</p>
-                <p>$ Azure Cloud Connected ✓</p>
-                <p className="success">$ Systems Operational</p>
-
-              </div>
-
-            </div>
+            {/* STATS */}
 
             <div className="stats">
 
-              <div className="stat-card">
+              <motion.div
+                  whileHover={{ y: -8 }}
+                  className="stat-card"
+              >
+
                 <h3>25+</h3>
+
                 <p>Microservices</p>
-              </div>
 
-              <div className="stat-card">
+              </motion.div>
+
+              <motion.div
+                  whileHover={{ y: -8 }}
+                  className="stat-card"
+              >
+
                 <h3>100M+</h3>
-                <p>Files Moderated</p>
-              </div>
 
-              <div className="stat-card">
-                <h3>5+</h3>
-                <p>Years Experience</p>
-              </div>
+                <p>Files Moderated</p>
+
+              </motion.div>
+
+              <motion.div
+                  whileHover={{ y: -8 }}
+                  className="stat-card"
+              >
+
+                <h3>{totalExperience}</h3>
+
+                <p>Total Experience</p>
+
+              </motion.div>
 
             </div>
 
           </motion.div>
+
+          {/* IMAGE */}
 
           <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -170,90 +380,25 @@ export default function App() {
               className="hero-right"
           >
 
-            <div className="image-container">
-              <img src={process.env.PUBLIC_URL + "/profile.jpg"} alt="Sreeram" />
-            </div>
+            <motion.div
+                className="image-container"
+                animate={{
+                  y: [0, -10, 0]
+                }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 5
+                }}
+            >
+
+              <img
+                  src={process.env.PUBLIC_URL + '/profile.jpg'}
+                  alt="Sreeram"
+              />
+
+            </motion.div>
 
           </motion.div>
-
-        </section>
-
-        {/* ABOUT */}
-
-        <section className="section glass-card">
-
-          <div className="section-title">
-            <p>ABOUT ME</p>
-            <h2>Building secure and scalable backend systems.</h2>
-          </div>
-
-          <p className="about-text">
-            Currently working at Straumann Group as a Software Engineer managing
-            authentication systems, Azure Active Directory, login services,
-            custom policies, and User Data Services.
-
-            Experienced in designing production-grade backend services,
-            implementing real-time synchronization systems,
-            resolving live production issues, and optimizing enterprise applications.
-
-            Passionate about system design, clean architecture,
-            scalability, and building reliable cloud-native platforms.
-          </p>
-
-        </section>
-
-        {/* EXPERTISE */}
-
-        <section className="section">
-
-          <div className="section-title">
-            <p>CORE EXPERTISE</p>
-            <h2>What I specialize in</h2>
-          </div>
-
-          <div className="expertise-grid">
-
-            <div className="expertise-card">
-              <Shield size={40} />
-              <h3>Authentication Systems</h3>
-              <p>
-                Azure AD B2C, JWT, OAuth, SAML,
-                login services, token flows,
-                and enterprise identity management.
-              </p>
-            </div>
-
-            <div className="expertise-card">
-              <Server size={40} />
-              <h3>Microservices</h3>
-              <p>
-                Scalable backend systems using
-                Java, Spring Boot, REST APIs,
-                distributed architecture and event-driven systems.
-              </p>
-            </div>
-
-            <div className="expertise-card">
-              <Cloud size={40} />
-              <h3>Cloud & DevOps</h3>
-              <p>
-                Azure Cloud, CI/CD pipelines,
-                Jenkins, Docker, monitoring,
-                deployments and infrastructure automation.
-              </p>
-            </div>
-
-            <div className="expertise-card">
-              <Database size={40} />
-              <h3>Databases</h3>
-              <p>
-                PostgreSQL, MySQL, Redis,
-                performance optimization,
-                caching and data management.
-              </p>
-            </div>
-
-          </div>
 
         </section>
 
@@ -262,95 +407,103 @@ export default function App() {
         <section className="section">
 
           <div className="section-title">
+
             <p>EXPERIENCE</p>
+
             <h2>Professional Journey</h2>
+
           </div>
 
           <div className="timeline">
 
-            <div className="timeline-item">
+            {experiences.map((job, index) => (
 
-              <div className="timeline-icon">
-                <BriefcaseBusiness />
-              </div>
+                <motion.div
+                    key={index}
+                    className="timeline-item"
+                    initial={{
+                      opacity: 0,
+                      x: -60
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      x: 0
+                    }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.7,
+                      delay: index * 0.1
+                    }}
+                    whileHover={{
+                      y: -8
+                    }}
+                >
 
-              <div>
+                  <div className="timeline-icon">
 
-                <h3>Straumann Group</h3>
-                <h4>Software Engineer - Java</h4>
-                <span>September 2023 — Present</span>
+                    {job.icon}
 
-                <ul>
+                  </div>
 
-                  <li>
-                    Managed authentication services including Azure Active Directory,
-                    Azure AD B2C custom policies, login services, and User Data Services.
-                  </li>
+                  <div className="timeline-content">
 
-                  <li>
-                    Took complete ownership of the authentication segment from knowledge transfer
-                    to production support and enhancement.
-                  </li>
+                    <div className="company-header">
 
-                  <li>
-                    Implemented high-value customer-facing backend features
-                    and optimized real-time SAP synchronization systems.
-                  </li>
+                      <div className="company-top-row">
 
-                  <li>
-                    Resolved production issues, refactored legacy code,
-                    improved system performance and stability.
-                  </li>
+                        <h3>{job.company}</h3>
 
-                  <li>
-                    Awarded Certificates of Appreciation in 2024 and 2025
-                    for ownership and technical excellence.
-                  </li>
+                        <div className="job-experience">
 
-                </ul>
+                          {job.experience}
 
-              </div>
+                        </div>
 
-            </div>
+                      </div>
 
-            <div className="timeline-item">
+                      <h4>{job.role}</h4>
 
-              <div className="timeline-icon">
-                <Code2 />
-              </div>
+                      <div className="job-meta">
 
-              <div>
+                        <div className="company-location">
 
-                <h3>Yell</h3>
-                <h4>Software Engineer</h4>
-                <span>February 2022 — August 2023</span>
+                          <MapPin size={14} />
 
-                <ul>
+                          {job.location}
 
-                  <li>
-                    Worked across 25+ microservices and enterprise backend systems.
-                  </li>
+                        </div>
 
-                  <li>
-                    Built moderation systems capable of filtering
-                    over 100 million image and text files.
-                  </li>
+                        <div className="meta-dot"></div>
 
-                  <li>
-                    Configured backend infrastructure and MarkLogic servers
-                    handling UK-wide traffic.
-                  </li>
+                        <div className="job-duration">
 
-                  <li>
-                    Developed and enhanced APIs,
-                    implemented new microservices and cross-functional integrations.
-                  </li>
+                          {job.duration}
 
-                </ul>
+                        </div>
 
-              </div>
+                      </div>
 
-            </div>
+                    </div>
+
+                    <ul>
+
+                      {job.points.map((point, i) => (
+
+                          <li key={i}>
+
+                            {point}
+
+                          </li>
+
+                      ))}
+
+                    </ul>
+
+                  </div>
+
+                </motion.div>
+
+            ))}
 
           </div>
 
@@ -361,44 +514,35 @@ export default function App() {
         <section className="section glass-card">
 
           <div className="section-title">
+
             <p>TECH STACK</p>
+
             <h2>Skills & Technologies</h2>
+
           </div>
 
           <div className="skills">
 
-            {skills.map((skill) => (
-                <span key={skill}>
-              {skill}
-            </span>
+            {skills.map((skill, index) => (
+
+                <motion.span
+                    key={skill}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{
+                      delay: index * 0.03
+                    }}
+                    whileHover={{
+                      scale: 1.08,
+                      y: -4
+                    }}
+                >
+
+                  {skill}
+
+                </motion.span>
+
             ))}
-
-          </div>
-
-        </section>
-
-        {/* EDUCATION */}
-
-        <section className="section">
-
-          <div className="section-title">
-            <p>EDUCATION</p>
-            <h2>Academic Background</h2>
-          </div>
-
-          <div className="education-grid">
-
-            <div className="education-card">
-              <h3>University of Glasgow</h3>
-              <p>M.Sc. Information Technology</p>
-              <span>2021 — 2022</span>
-            </div>
-
-            <div className="education-card">
-              <h3>REVA University</h3>
-              <p>B.Tech Electronics & Communication</p>
-              <span>2014 — 2018</span>
-            </div>
 
           </div>
 
@@ -406,46 +550,99 @@ export default function App() {
 
         {/* FOOTER */}
 
-        <footer>
+        <footer className="footer">
 
-          <h2>
-            Let's build scalable systems together.
-          </h2>
+          <motion.div
+              initial={{
+                opacity: 0,
+                y: 40
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0
+              }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.8
+              }}
+          >
 
-          <p>
-            Open to Backend Engineering opportunities and impactful software projects.
-          </p>
+            <h2>
 
-          <div className="footer-links">
+              Let's Build Scalable Backend Systems Together.
 
-            <a
-                href="https://www.linkedin.com/in/work-ram/"
-                target="_blank"
-                rel="noreferrer"
-            >
-              <Linkedin />
-            </a>
+            </h2>
 
-            <a href="mailto:work.ram22@gmail.com">
-              <Mail />
-            </a>
+            <p>
 
-            <a
-                href="https://github.com/workram22"
-                target="_blank"
-                rel="noreferrer"
-            >
-              <Github />
-            </a>
+              Open to Backend Engineering opportunities,
+              cloud-native platform development,
+              distributed systems and enterprise backend projects.
 
-          </div>
+            </p>
 
-          <span>
-          © 2026 Sreeram Ravishankar
-        </span>
+            <div className="footer-buttons">
+
+              <a
+                  href="mailto:work.ram22@gmail.com"
+                  className="primary-btn"
+              >
+
+                <Mail size={18} />
+
+                Contact Me
+
+              </a>
+
+              <a
+                  href="https://github.com/workram22"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="secondary-btn"
+              >
+
+                <Github size={18} />
+
+                GitHub
+
+              </a>
+
+              <a
+                  href="https://www.linkedin.com/in/work-ram/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="secondary-btn"
+              >
+
+                <Linkedin size={18} />
+
+                LinkedIn
+
+              </a>
+
+            </div>
+
+            <div className="footer-bottom">
+
+            <span>
+
+              © 2026 Sreeram Ravishankar
+
+            </span>
+
+              <span>
+
+              Backend Software Engineer • Bengaluru, India
+
+            </span>
+
+            </div>
+
+          </motion.div>
 
         </footer>
 
       </div>
+
   );
 }
