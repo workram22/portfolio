@@ -76,7 +76,7 @@ export default function App() {
           >
 
             <div className="availability">
-              AVAILABLE FOR SOFTWARE ENGINEERING OPPORTUNITIES
+              OPEN TO WORK - SOFTWARE ENGINEERING OPPORTUNITIES
             </div>
 
             <h1>
