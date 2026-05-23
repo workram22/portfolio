@@ -275,7 +275,6 @@ export default function App() {
             </p>
 
             {/* BUTTONS */}
-
             <div className="hero-buttons">
 
               <motion.a
