@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.css';
+
 import { motion } from 'framer-motion';
 
 import {
@@ -48,9 +49,22 @@ export default function App() {
   return (
       <div className="app">
 
-        <div className="background-glow"></div>
+        {/* BACKGROUND */}
 
-        {/* HERO SECTION */}
+        <div className="background-glow"></div>
+        <div className="grid-background"></div>
+
+        <div className="floating-icons">
+
+          <div className="floating-icon java">{'</>'}</div>
+          <div className="floating-icon api">API</div>
+          <div className="floating-icon db">SQL</div>
+          <div className="floating-icon cloud">AZURE</div>
+          <div className="floating-icon docker">DOCKER</div>
+
+        </div>
+
+        {/* HERO */}
 
         <section className="hero">
 
@@ -103,6 +117,28 @@ export default function App() {
                 <Mail size={18} />
                 Contact Me
               </a>
+
+            </div>
+
+            {/* TERMINAL */}
+
+            <div className="terminal-window">
+
+              <div className="terminal-header">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div className="terminal-body">
+
+                <p>$ Initializing Backend Services...</p>
+                <p>$ Loading Authentication Modules...</p>
+                <p>$ Connecting Microservices...</p>
+                <p>$ Azure Cloud Connected ✓</p>
+                <p className="success">$ Systems Operational</p>
+
+              </div>
 
             </div>
 
@@ -233,16 +269,19 @@ export default function App() {
           <div className="timeline">
 
             <div className="timeline-item">
+
               <div className="timeline-icon">
                 <BriefcaseBusiness />
               </div>
 
               <div>
+
                 <h3>Straumann Group</h3>
                 <h4>Software Engineer - Java</h4>
                 <span>September 2023 — Present</span>
 
                 <ul>
+
                   <li>
                     Managed authentication services including Azure Active Directory,
                     Azure AD B2C custom policies, login services, and User Data Services.
@@ -269,7 +308,9 @@ export default function App() {
                   </li>
 
                 </ul>
+
               </div>
+
             </div>
 
             <div className="timeline-item">
@@ -303,34 +344,6 @@ export default function App() {
                   <li>
                     Developed and enhanced APIs,
                     implemented new microservices and cross-functional integrations.
-                  </li>
-
-                </ul>
-
-              </div>
-
-            </div>
-
-            <div className="timeline-item">
-
-              <div className="timeline-icon">
-                <Cpu />
-              </div>
-
-              <div>
-
-                <h3>Flagroot</h3>
-                <h4>Full Stack Developer Intern</h4>
-                <span>October 2019 — October 2020</span>
-
-                <ul>
-
-                  <li>
-                    Developed ERP systems using Java, JDBC, SQL and J2EE.
-                  </li>
-
-                  <li>
-                    Worked on real-world projects during Java Full Stack training.
                   </li>
 
                 </ul>
