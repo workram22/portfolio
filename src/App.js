@@ -267,13 +267,11 @@ export default function App() {
             </div>
 
             <p className="hero-description">
-
               Backend-focused Software Engineer with{' '}
               {totalExperience}{' '}
               of experience building scalable enterprise applications,
               authentication systems, distributed microservices and
               cloud-native backend platforms.
-
             </p>
 
             {/* BUTTONS */}
