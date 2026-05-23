@@ -171,7 +171,7 @@ export default function App() {
           >
 
             <div className="image-container">
-              <img src="/profile.jpg" alt="Sreeram" />
+              <img src={process.env.PUBLIC_URL + "/profile.jpg"} alt="Sreeram" />
             </div>
 
           </motion.div>
