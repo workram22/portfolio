@@ -268,7 +268,8 @@ export default function App() {
 
             <p className="hero-description">
 
-              Backend-focused Software Engineer with {totalExperience}
+              Backend-focused Software Engineer with{' '}
+              {totalExperience}{' '}
               of experience building scalable enterprise applications,
               authentication systems, distributed microservices and
               cloud-native backend platforms.
