@@ -1,8 +1,6 @@
 import React from 'react';
 import './styles.css';
-
 import { motion } from 'framer-motion';
-
 import {
   Linkedin,
   Mail,
@@ -15,13 +13,9 @@ import {
   Sparkles,
   ArrowRight
 } from 'lucide-react';
-
 export default function App() {
-
   /* DYNAMIC EXPERIENCE CALCULATION */
-
   const calculateDuration = (start, end = new Date()) => {
-
     const startDate = new Date(start);
     const endDate = new Date(end);
 
@@ -64,32 +58,23 @@ export default function App() {
     ];
 
     let totalMonths = 0;
-
     jobs.forEach(job => {
-
       const start = new Date(job.start);
       const end = new Date(job.end);
-
       let months =
           (end.getFullYear() - start.getFullYear()) * 12 +
           (end.getMonth() - start.getMonth());
-
       if (end.getDate() < start.getDate()) {
         months--;
       }
-
       totalMonths += months;
-
     });
 
     const years = Math.floor(totalMonths / 12);
     const months = totalMonths % 12;
-
     return `${years}y ${months}m`;
   };
-
   const totalExperience = calculateTotalExperience();
-
   const experiences = [
     {
       company: 'Straumann Group',
@@ -99,14 +84,12 @@ export default function App() {
       experience: calculateDuration('2023-09-01'),
       icon: <BriefcaseBusiness />,
       points: [
-        'Managed Azure AD B2C authentication systems and enterprise login services.',
-        'Owned authentication systems from KT to production enhancements.',
-        'Implemented high-value customer-facing backend features.',
-        'Optimized SAP synchronization and backend integrations.',
-        'Received Certificates of Appreciation in 2024 and 2025.'
+        'Took end-to-end ownership of the enterprise authentication platform, managing Azure AD B2C, authentication policies, login services, and user data services across production support and platform enhancements.',
+        'Designed and implemented high-impact customer-facing backend features, optimized legacy services, and improved real-time SAP synchronization workflows, enhancing platform reliability, performance, and scalability.',
+        'Collaborated with cross-functional teams to troubleshoot production issues, perform root-cause analysis, improve maintainability, and reduce technical debt across enterprise applications.',
+        'Awarded “Certificate of Appreciation – Taking Ownership” in 2024 and 2025 for my continuous commitment, expertly managing the complexities of the User Service with strong technical depth, and responsibility towards fulfilling the organization’s objectives.'
       ]
     },
-
     {
       company: 'Yell',
       role: 'Software Engineer',
@@ -118,10 +101,10 @@ export default function App() {
       ),
       icon: <Code2 />,
       points: [
-        'Worked across 25+ enterprise microservices.',
-        'Built moderation systems handling 100M+ files.',
-        'Configured MarkLogic infrastructure for UK-wide traffic.',
-        'Implemented backend integrations and APIs.'
+        'Developed and maintained backend services across 25+ enterprise microservices, implementing scalable REST APIs and coordinating changes across dependent distributed systems.',
+        'Led large-scale content moderation initiatives by building backend endpoints to detect profanity levels and moderate over 100 million image and text files, improving platform compliance and content quality.',
+        'Designed and configured multiple MarkLogic servers to support high-availability applications serving production traffic across the United Kingdom infrastructure.',
+        'Built and deployed new microservices and backend features while collaborating with cross-functional teams on distributed system integrations, production deployments, and enterprise platform enhancements.'
       ]
     },
 
@@ -270,8 +253,7 @@ export default function App() {
               Backend-focused Software Engineer with{' '}
               {totalExperience}{' '}
               of experience building scalable enterprise applications,
-              authentication systems, distributed microservices and
-              cloud-native backend platforms.
+              authentication systems, and distributed microservices.
             </p>
 
             {/* BUTTONS */}
